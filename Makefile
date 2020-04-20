@@ -36,23 +36,24 @@ INCLUDE = fillit.h
 .PHONY: all clean fclean re norme
 
 $(NAME): $(OBJ)
-	@(cd $(LIB_DIR) && $(MAKE))
-	@$(CC) $(FLAGS) -o $(NAME) $(SOURCES) $(LIB_DIR)/libft.a
-	@echo "$(COMP_COLOR)   --- Compiled ! ---  $(NO_COLOR)"
+	(cd $(LIB_DIR) && $(MAKE))
+	$(CC) $(FLAGS) -o $(NAME) $(SOURCES) $(LIB_DIR)/libft.a
+	echo "$(COMP_COLOR)   --- Fillit Compiled ! ---  $(NO_COLOR)"
 
 all: $(NAME)
 
 norme:
-	@norminette $(SRC)
+	norminette $(SRC)
 
 clean:
-	@rm -rf $(OBJ)
-	@(cd $(LIB_DIR) && $(MAKE) $@)
-	@echo "$(BIN2_COLOR)   --- Binary   deleted ---        $(NO_COLOR)"
+	rm -rf $(OBJ)
+	(cd $(LIB_DIR) && $(MAKE) $@)
+	echo "$(BIN2_COLOR)   --- Binary   deleted ---   $(NO_COLOR)"
 
 fclean: clean
-	@rm -rf $(NAME)
-	@(cd $(LIB_DIR) && $(MAKE) $@)
-	@echo "$(PROG_COLOR)   --- Program  deleted ---        $(NO_COLOR)"
+	rm -rf $(NAME)
+	(cd $(LIB_DIR) && $(MAKE) $@)
+	echo "$(PROG_COLOR)   --- Program  deleted ---   $(NO_COLOR)"
 
 re: fclean all
+.SILENT:
